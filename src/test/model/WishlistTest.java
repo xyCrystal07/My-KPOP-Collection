@@ -11,7 +11,7 @@ public class WishlistTest {
     @BeforeEach
     void runBefore() {
         wishList = new Wishlist();
-        item = new CollectibleItem("Ricky KCON Japan Venue Benefit PC", "Photocard", "Ricky", "You had me at HELLO", "KCON JAPAN VENUE", "Mint", false, "");
+        item = new CollectibleItem("Ricky KCON Japan Venue Benefit PC", "Photocard", "Ricky", "You had me at HELLO", "KCON Japan Venue", "Mint", false, "");
     }
 
     @Test 

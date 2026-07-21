@@ -10,6 +10,7 @@ public class CollectibleItem {
     private boolean owned;
     private String notes;
 
+    // 
     public CollectibleItem(String itemName, String itemType, String ownerIdol, String album, String version, String condition, boolean owned, String notes) {
         this.itemName = itemName;
         this.itemType = itemType;
