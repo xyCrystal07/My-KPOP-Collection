@@ -8,7 +8,8 @@ public class CollectionManager {
     private ArrayList<CollectibleItem> collections;
     private Wishlist wishList;
 
-    // EFFECTS: constructs an empty collection manager with no favorite idols, no collectible items, and an empty wishlist
+    // EFFECTS: constructs an empty collection manager with no favorite idols,
+    // no collectible items, and an empty wishlist
     public CollectionManager() {
         idols = new ArrayList<>();
         collections = new ArrayList<>();
@@ -22,13 +23,30 @@ public class CollectionManager {
     }
 
     // MODIFIES: this
-    // REQUIRES: idol is in this collection manager
-    // EFFECTS: remove the given favorite idol from the collection manager
-    public void removeFavoriteIdol(FavoriteIdol idol) {
-        idols.remove(idol);
+    // EFFECTS: removes the favorite idol with the given name if it exists
+    public boolean removeFavoriteIdol(String name) {
+        FavoriteIdol idol = findFavoriteIdol(name);
+
+        if (idol != null) {
+            idols.remove(idol);
+            return true;
+        }
+
+        return false;
     }
 
-    // EFFECTS: returns the list of favorite idols;
+    // EFFECTS: returns the favorite idol with the given name;
+    // returns null if no such idol exists
+    public FavoriteIdol findFavoriteIdol(String name) {
+        for (FavoriteIdol idol : idols) {
+            if (idol.getName().equalsIgnoreCase(name)) {
+                return idol;
+            }
+        }
+        return null;
+    }
+
+    // EFFECTS: returns the list of favorite idols
     public ArrayList<FavoriteIdol> getFavoriteIdols() {
         return idols;
     }
@@ -40,13 +58,31 @@ public class CollectionManager {
     }
 
     // MODIFIES: this
-    // REQUIRES: item is in this collection manager
-    // EFFECTS: removes the given collectible item from the collection manager
-    public void removeCollectibleItem(CollectibleItem item) {
-        collections.remove(item);
+    // EFFECTS: removes the collectible item with the given item name if it exists;
+    //          returns true if removed, false otherwise
+    public boolean removeCollectibleItem(String itemName) {
+        CollectibleItem item = findCollectibleItem(itemName);
+
+        if (item != null) {
+            collections.remove(item);
+            return true;
+        }
+
+        return false;
     }
 
-    // EFFECTS: returns the list of collections
+    // EFFECTS: returns the collectible item with the given item name;
+    // returns null if no such collectible item exists
+    public CollectibleItem findCollectibleItem(String itemName) {
+        for (CollectibleItem item : collections) {
+            if (item.getItemName().equalsIgnoreCase(itemName)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    // EFFECTS: returns the list of collectible items
     public ArrayList<CollectibleItem> getCollections() {
         return collections;
     }

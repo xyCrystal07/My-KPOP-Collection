@@ -1,5 +1,6 @@
 package model;
 
+// Represents a collectible K-pop item
 public class CollectibleItem {
     private String itemName;
     private String itemType;
@@ -10,7 +11,7 @@ public class CollectibleItem {
     private boolean owned;
     private String notes;
 
-    // 
+    // EFFECTS: constructs a collectible item with the given information
     public CollectibleItem(String itemName, String itemType, String ownerIdol, String album, String version, String condition, boolean owned, String notes) {
         this.itemName = itemName;
         this.itemType = itemType;

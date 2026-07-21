@@ -38,7 +38,7 @@ public class CollectionManagerTest {
         assertEquals(1,manager.getFavoriteIdols().size());
         assertTrue(manager.getFavoriteIdols().contains(idol));
 
-        manager.removeFavoriteIdol(idol);
+        manager.removeFavoriteIdol("Ricky");
         assertEquals(0,manager.getFavoriteIdols().size());
         assertFalse(manager.getFavoriteIdols().contains(idol));
      }
@@ -57,7 +57,7 @@ public class CollectionManagerTest {
         assertEquals(1,manager.getCollections().size());
         assertTrue(manager.getCollections().contains(item));
 
-        manager.removeCollectibleItem(item);
+        manager.removeCollectibleItem("Ricky KCON Japan Venue Benefit PC");
         assertEquals(0,manager.getCollections().size());
         assertFalse(manager.getCollections().contains(item));
      }

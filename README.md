@@ -15,10 +15,11 @@ This application is intended for K-pop fans and collectors who want a simple way
 
 ## User Stories
 
-- As a user, I want to be able to add a collectible item to my collection.
-- As a user, I want to be able to view all collectible items in my collection.
-- As a user, I want to be able to add a favorite idol to my idol list.
-- As a user, I want to be able to view detailed information about a favorite idol.
-- As a user, I want to be able to add a collectible item to my wishlist.
-- As a user, I want to be able to move a collectible item from my wishlist to my collection after obtaining it.
-- As a user, I want to be able to update the condition or notes of a collectible item.
+- As a user, I want to add a favorite idol.
+- As a user, I want to remove a favorite idol.
+- As a user, I want to view my favorite idols.
+- As a user, I want to add a collectible item.
+- As a user, I want to remove a collectible item.
+- As a user, I want to view my collectible items.
+- As a user, I want to add an unowned collectible item to my wishlist.
+- As a user, I want to view my wishlist.
