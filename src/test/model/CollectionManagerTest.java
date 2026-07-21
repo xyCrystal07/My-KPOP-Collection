@@ -16,6 +16,7 @@ public class CollectionManagerTest {
         item = new CollectibleItem("Ricky KCON Japan Venue Benefit PC", "Photocard", "Ricky", "You had me at HELLO", "KCON Japan Venue", "Mint", false, "");
      }
 
+
      @Test
      void testConstructor() {
         assertEquals(0, manager.getFavoriteIdols().size());
@@ -33,12 +34,13 @@ public class CollectionManagerTest {
 
      @Test
      void testRemoveFavoriteIdol() {
+        manager.addFavoriteIdol(idol);
         assertEquals(1,manager.getFavoriteIdols().size());
         assertTrue(manager.getFavoriteIdols().contains(idol));
 
         manager.removeFavoriteIdol(idol);
         assertEquals(0,manager.getFavoriteIdols().size());
-        assertTrue(manager.getFavoriteIdols().contains(idol));
+        assertFalse(manager.getFavoriteIdols().contains(idol));
      }
 
      @Test
