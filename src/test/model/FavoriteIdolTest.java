@@ -14,22 +14,22 @@ public class FavoriteIdolTest {
 
     @Test
     void testConstructor() {
-        assertEquals("Felix", idol.getName());
-        assertEquals("Stray Kids", idol.getGroup());
-        assertEquals("Dance", idol.getPosition());
-        assertEquals("2000-09-15", idol.getBirthday());
-        assertEquals("MANIAC", idol.getFavoriteSong());
+        assertEquals("Felix",idol.getName());
+        assertEquals("Stray Kids",idol.getGroup());
+        assertEquals("Dance",idol.getPosition());
+        assertEquals("2000-09-15",idol.getBirthday());
+        assertEquals("MANIAC",idol.getFavoriteSong());
         assertEquals(7,idol.getBiasLevel());
     }
 
     @Test
-    void setFavoriteSongTest() {
+    void testSetFavoriteSong() {
         idol.setFavoriteSong("LALALALA");
-        assertEquals("LALALALA", idol.getFavoriteSong());
+        assertEquals("LALALALA",idol.getFavoriteSong());
     }
 
     @Test
-    void setBiasLevelTest() {
+    void testSetBiasLevel() {
         idol.setBiasLevel(6);
         assertEquals(6,idol.getBiasLevel());
     }
