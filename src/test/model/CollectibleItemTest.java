@@ -9,7 +9,7 @@ public class CollectibleItemTest {
 
     @BeforeEach
     void runBefore() {
-        item = new CollectibleItem("Ricky Model Student JP Benefit PC", "Photocard", "Ricky", "Melting Point", "Model Student JP", "Mint", true, "Bought in Xianyu");
+        item = new CollectibleItem("Ricky Model Student JP Benefit PC", "Photocard", "Ricky", "MELTING POINT", "Model Student JP", "Mint", true, "Bought in Xianyu");
     }
 
     @Test 
@@ -39,6 +39,6 @@ public class CollectibleItemTest {
     @Test
     void testSetOwned() {
         item.setOwned(false);
-        assertEquals(false,item.isOwned());
+        assertFalse(item.isOwned());
     }
 }

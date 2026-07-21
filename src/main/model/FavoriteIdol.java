@@ -1,6 +1,6 @@
 package model;
 
-//Represents a favourite K-pop idol
+// Represents a favourite K-pop idol
 public class FavoriteIdol {
     private String name;
     private String group;
