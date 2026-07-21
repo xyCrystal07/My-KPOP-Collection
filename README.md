@@ -23,3 +23,5 @@ This application is intended for K-pop fans and collectors who want a simple way
 - As a user, I want to view my collectible items.
 - As a user, I want to add an unowned collectible item to my wishlist.
 - As a user, I want to view my wishlist.
+- As a user, I want to have the option to save the entire state of my application to file so that I do not lose my favorite idols, collection, and wishlist.
+- As a user, I want to have the option to load the entire state of my application from file so that I can continue from where I previously stopped.
