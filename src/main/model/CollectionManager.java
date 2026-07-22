@@ -1,14 +1,18 @@
 package model;
 
 import java.util.ArrayList;
+import persistence.Writable;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 // Represents a manager of K-pop collection
-public class CollectionManager {
+public class CollectionManager implements Writable {
     private ArrayList<FavoriteIdol> idols;
     private ArrayList<CollectibleItem> collections;
     private Wishlist wishList;
 
-    // EFFECTS: constructs an empty collection manager with no favorite idols,
+        // EFFECTS: constructs an empty collection manager with no favorite idols,
     // no collectible items, and an empty wishlist
     public CollectionManager() {
         idols = new ArrayList<>();
@@ -91,4 +95,34 @@ public class CollectionManager {
     public Wishlist getWishlist() {
         return wishList;
     }
+
+    @Override
+    public JSONObject toJson() {
+        // TODO Auto-generated method stub
+        JSONObject json = new JSONObject();
+        json.put("idols", idolsToJson());
+        json.put("collections", collectionsToJson());
+        json.put("wishList", wishList.toJson());
+        return json;
+    }
+
+    // EFFECTS: returns favorite idols in this collection manager as a JSON array
+    private JSONArray idolsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (FavoriteIdol idol: idols) {
+            jsonArray.put(idol.toJson());
+        }
+        return jsonArray;
+    }
+    
+    // EFFECTS: returns collectible items in this collection manager as a JSON array
+    private JSONArray collectionsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (CollectibleItem item : collections) {
+            jsonArray.put(item.toJson());
+        }
+        return jsonArray;
+    }
+    
 }
