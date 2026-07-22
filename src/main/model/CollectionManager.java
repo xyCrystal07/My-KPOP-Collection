@@ -12,7 +12,7 @@ public class CollectionManager implements Writable {
     private ArrayList<CollectibleItem> collections;
     private Wishlist wishList;
 
-        // EFFECTS: constructs an empty collection manager with no favorite idols,
+    // EFFECTS: constructs an empty collection manager with no favorite idols,
     // no collectible items, and an empty wishlist
     public CollectionManager() {
         idols = new ArrayList<>();
