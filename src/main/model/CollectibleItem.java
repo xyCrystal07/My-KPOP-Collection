@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a collectible K-pop item
-public class CollectibleItem {
+public class CollectibleItem implements Writable {
     private String itemName;
     private String itemType;
     private String ownerIdol;
@@ -65,5 +68,20 @@ public class CollectibleItem {
 
     public void setOwned(boolean owned) {
         this.owned = owned;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        // TODO Auto-generated method stub
+        JSONObject json = new JSONObject();
+        json.put("itemName", itemName);
+        json.put("itemType", itemType);
+        json.put("ownerIdol", ownerIdol);
+        json.put("album", album);
+        json.put("version", version);
+        json.put("condition", condition);
+        json.put("owned", owned);
+        json.put("notes", notes);
+        return json;
     }
 }

@@ -1,9 +1,12 @@
 package model;
 
 import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
 
 // Represents a wishlist that stores collectible items
-public class Wishlist {
+public class Wishlist implements Writable {
     private ArrayList<CollectibleItem> items;
 
     // EFFECTS: constructs an empty wishlist
@@ -34,5 +37,24 @@ public class Wishlist {
 
     public boolean contains(CollectibleItem item) {
         return items.contains(item);
+    }
+
+    @Override
+    public JSONObject toJson() {
+        // TODO Auto-generated method stub
+        JSONObject json = new JSONObject();
+        json.put("items", itemsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns items in this wishlist as a JSON array
+    private JSONArray itemsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        
+        for (CollectibleItem item : items) {
+            jsonArray.put(item.toJson());
+        }
+
+        return jsonArray;
     }
 }
