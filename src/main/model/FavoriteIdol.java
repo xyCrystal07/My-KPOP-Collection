@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a favourite K-pop idol
-public class FavoriteIdol {
+public class FavoriteIdol implements Writable {
     private String name;
     private String group;
     private String position;
@@ -49,5 +52,18 @@ public class FavoriteIdol {
 
     public void setBiasLevel(int biasLevel) {
         this.biasLevel = biasLevel;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        // TODO Auto-generated method stub
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("group", group);
+        json.put("position", position);
+        json.put("birthday", birthday);
+        json.put("favoriteSong", favoriteSong);
+        json.put("biasLevel", biasLevel);
+        return json;
     }
 }

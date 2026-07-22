@@ -109,6 +109,7 @@ public class CollectionManager implements Writable {
     // EFFECTS: returns favorite idols in this collection manager as a JSON array
     private JSONArray idolsToJson() {
         JSONArray jsonArray = new JSONArray();
+        
         for (FavoriteIdol idol: idols) {
             jsonArray.put(idol.toJson());
         }
