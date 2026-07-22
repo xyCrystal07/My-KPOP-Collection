@@ -17,7 +17,7 @@ public class CollectibleItemTest {
         assertEquals("Ricky Model Student JP Benefit PC", item.getItemName());
         assertEquals("Photocard", item.getItemType());
         assertEquals("Ricky", item.getOwnerIdol());
-        assertEquals("Melting Point", item.getAlbum());
+        assertEquals("MELTING POINT", item.getAlbum());
         assertEquals("Model Student JP", item.getVersion());
         assertEquals("Mint", item.getCondition());
         assertTrue(item.isOwned());

@@ -1,0 +1,30 @@
+{
+    "wishList": {"items": [{
+        "itemName": "Armageddon Photocard",
+        "itemType": "Photocard",
+        "condition": "Mint",
+        "ownerIdol": "Karina",
+        "notes": "Want to buy",
+        "album": "Armageddon",
+        "owned": false,
+        "version": "A Version"
+    }]},
+    "collections": [{
+        "itemName": "Drama Album",
+        "itemType": "Album",
+        "condition": "New",
+        "ownerIdol": "Karina",
+        "notes": "First album",
+        "album": "Drama",
+        "owned": true,
+        "version": "Photobook"
+    }],
+    "idols": [{
+        "birthday": "2000-04-11",
+        "favoriteSong": "Supernova",
+        "name": "Karina",
+        "position": "Leader",
+        "biasLevel": 5,
+        "group": "aespa"
+    }]
+}
