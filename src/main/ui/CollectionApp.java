@@ -4,16 +4,25 @@ import java.util.Scanner;
 import model.FavoriteIdol;
 import model.CollectibleItem;
 import model.CollectionManager;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class CollectionApp {
     private Scanner input;
     private CollectionManager manager;
     private boolean keepGoing;
+    private static final String JSON_STORE = "./data/kpopCollection.json";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     public CollectionApp() {
         manager = new CollectionManager();
         input = new Scanner(System.in);
         keepGoing = true;
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
 
         runCollection();
     }
@@ -41,6 +50,8 @@ public class CollectionApp {
         System.out.println("e - View favorite idols");
         System.out.println("f - View collectible items");
         System.out.println("g - View wishlist");
+        System.out.println("s - Save collection");
+        System.out.println("l - Load collection");  
         System.out.println("q - Quit");
         System.out.print("Choose: ");
     }
@@ -73,9 +84,38 @@ public class CollectionApp {
             case "q":
                 keepGoing = false;
                 break;
+            case "s":
+                saveCollection();
+            break;
+            case "l":
+                loadCollection();
+            break;
             default:
                 System.out.println("Invalid command.");
 
+        }
+    }
+
+    // EFFECTS: saves the collection manager to file
+    private void saveCollection() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(manager);
+            jsonWriter.close();
+            System.out.println("Saved collection to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads collection manager from file
+    private void loadCollection() {
+        try {
+            manager = jsonReader.read();
+            System.out.println("Loaded collection from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
     
