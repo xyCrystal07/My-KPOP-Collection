@@ -25,30 +25,49 @@ public class KpopCollectionGUI extends JFrame implements ActionListener {
     private JButton loadButton;
     private JButton addItemButton;
     private JButton showCollectionButton;
+    private JLabel imageLabel;
 
     public KpopCollectionGUI() {
         super("My K-pop Collection");
         manager = new CollectionManager();
-
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-
         initializeFrame();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the main GUI window and its components
     private void initializeFrame() {
-        setSize(700, 500);
+        setSize(900, 550);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-
         displayArea = new JTextArea();
         displayArea.setEditable(false);
+        displayArea.setBackground(new Color(230, 240, 255));
+        displayArea.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        displayArea.setText(
+                "Welcome to My K-pop Collection!\n\n"
+            + "Manage your favorite idols and\n"
+            + "collectible items here.\n\n"
+            + "• Add your favorite idols\n"
+            + "• Add collectible items\n"
+            + "• Save and load your collection\n\n"
+            + "Click a button above to get started."
+        );
         initializeButtons();
 
-        add(new JScrollPane(displayArea), BorderLayout.CENTER);
+        ImageIcon originalImage = new ImageIcon("images/ricky.jpg");
+        Image resizedImage = originalImage.getImage().getScaledInstance(220, 300, Image.SCALE_SMOOTH);
+        imageLabel = new JLabel(new ImageIcon(resizedImage));
+        JScrollPane scrollPane = new JScrollPane(displayArea);
+        scrollPane.setBorder(BorderFactory.createTitledBorder("Collection Information"));
+        add(scrollPane, BorderLayout.CENTER);
+        add(imageLabel, BorderLayout.EAST);
         setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes all buttons and adds them to the window
     private void initializeButtons() {
         JPanel buttonPanel = new JPanel();
 
@@ -75,6 +94,8 @@ public class KpopCollectionGUI extends JFrame implements ActionListener {
         add(buttonPanel, BorderLayout.NORTH);
     }
 
+    // MODIFIES: this
+    // EFFECTS: processes button click events
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addIdolButton) {
@@ -92,17 +113,26 @@ public class KpopCollectionGUI extends JFrame implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: prompts the user to enter an idol and adds it to the collection
     private void addFavoriteIdol() {
         String name = JOptionPane.showInputDialog(this, "Enter idol name:");
         if (name == null || name.isEmpty()) {
             return;
         }
         String group = JOptionPane.showInputDialog(this, "Enter group:");
-        FavoriteIdol idol = new FavoriteIdol(name, group, "", "", "", 0);
+        String position = JOptionPane.showInputDialog(this, "Enter position:");
+        String birthday = JOptionPane.showInputDialog(this, "Enter birthday:");
+        String song = JOptionPane.showInputDialog(this, "Enter favorite song:");
+        String level = JOptionPane.showInputDialog(this, "Enter bias level:");
+        int biasLevel = Integer.parseInt(level);
+        FavoriteIdol idol = new FavoriteIdol(name, group, position, birthday, song, biasLevel);
         manager.addFavoriteIdol(idol);
-        JOptionPane.showMessageDialog(this, "Favorite idol added.");
+        JOptionPane.showMessageDialog(this, "Favorite idol added.","Success", JOptionPane.PLAIN_MESSAGE);
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays all favorite idols in the text area
     private void showFavoriteIdols() {
         displayArea.setText("");
         if (manager.getFavoriteIdols().isEmpty()) {
@@ -111,51 +141,77 @@ public class KpopCollectionGUI extends JFrame implements ActionListener {
         }
         for (FavoriteIdol idol : manager.getFavoriteIdols()) {
             displayArea.append(idol.getName() + "\n");
+            displayArea.append("Group: " + idol.getGroup() + "\n");
+            displayArea.append("Position: " + idol.getPosition() + "\n");
+            displayArea.append("Birthday: " + idol.getBirthday() + "\n");
+            displayArea.append("Favorite Song: " + idol.getFavoriteSong() + "\n");
+            displayArea.append("Bias Level: " + idol.getBiasLevel() + "\n");
+            displayArea.append("----------------------------------\n");
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: prompts the user to enter an item and adds it to the collection
     private void addCollectibleItem() {
         String itemName = JOptionPane.showInputDialog(this, "Enter item name:");
         if (itemName == null || itemName.isEmpty()) {
             return;
         }
+        String itemType = JOptionPane.showInputDialog(this, "Enter item type:");
         String owner = JOptionPane.showInputDialog(this, "Enter owner idol:");
-        CollectibleItem item = new CollectibleItem(itemName, "", owner, "", "", "", true, "");
+        String album = JOptionPane.showInputDialog(this, "Enter album:");
+        String version = JOptionPane.showInputDialog(this, "Enter version:");
+        String condition = JOptionPane.showInputDialog(this, "Enter condition:");
+        String ownedInput = JOptionPane.showInputDialog(this, "Do you own this item? (true/false)");
+        boolean owned = Boolean.parseBoolean(ownedInput);
+        String notes = JOptionPane.showInputDialog(this, "Enter notes:");
+        CollectibleItem item = new CollectibleItem(itemName, itemType, owner, album, version, condition, owned, notes);
         manager.addCollectibleItem(item);
-        JOptionPane.showMessageDialog(this, "Collectible item added.");
+        JOptionPane.showMessageDialog(this, "Collectible item added.", "Success", JOptionPane.PLAIN_MESSAGE);
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays all collectible items in the text area
     private void showCollection() {
         displayArea.setText("");
-
         if (manager.getCollections().isEmpty()) {
             displayArea.setText("No collectible items.");
             return;
         }
-
         for (CollectibleItem item : manager.getCollections()) {
             displayArea.append(item.getItemName() + "\n");
+            displayArea.append("Item Type: " + item.getItemType() + "\n");
+            displayArea.append("Owner Idol: " + item.getOwnerIdol() + "\n");
+            displayArea.append("Album: " + item.getAlbum() + "\n");
+            displayArea.append("Version: " + item.getVersion() + "\n");
+            displayArea.append("Condition: " + item.getCondition() + "\n");
+            displayArea.append("Owned: " + item.isOwned() + "\n");
+            displayArea.append("Notes: " + item.getNotes() + "\n");
+            displayArea.append("----------------------------------\n");
         }
     }
 
+    // EFFECTS: saves the current collection to file
     private void saveCollection() {
         try {
             jsonWriter.open();
             jsonWriter.write(manager);
             jsonWriter.close();
-            JOptionPane.showMessageDialog(this, "Collection saved.");
+            JOptionPane.showMessageDialog(this, "Collection saved.", "Success", JOptionPane.PLAIN_MESSAGE);
         } catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(this, "Unable to save file.");
+            JOptionPane.showMessageDialog(this, "Unable to save file.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: loads the collection from file
     private void loadCollection() {
         try {
             manager = jsonReader.read();
-            JOptionPane.showMessageDialog(this, "Collection loaded.");
-            showFavoriteIdols();
+            displayArea.setText("Collection loaded successfully.\n\n" + "Click \"Show Idols\" or \"Show Collection\" "  + "to view your data.");
+            JOptionPane.showMessageDialog(this, "Collection loaded.",  "Success", JOptionPane.PLAIN_MESSAGE);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Unable to load file.");
+            JOptionPane.showMessageDialog(this, "Unable to load file.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

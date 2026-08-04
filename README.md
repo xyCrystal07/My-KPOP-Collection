@@ -25,3 +25,12 @@ This application is intended for K-pop fans and collectors who want a simple way
 - As a user, I want to view my wishlist.
 - As a user, I want to have the option to save the entire state of my application to file so that I do not lose my favorite idols, collection, and wishlist.
 - As a user, I want to have the option to load the entire state of my application from file so that I can continue from where I previously stopped.
+
+# Instructions for End User
+
+- You can view the panel that displays favorite idols by clicking "Show Idols".
+- You can add a favorite idol by clicking "Add Idol".
+- You can add a collectible item by clicking "Add Item".
+- You can locate the visual component on the right side of the GUI.
+- You can save the state of the application by clicking "Save".
+- You can reload the state of the application by clicking "Load".
