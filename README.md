@@ -44,3 +44,9 @@ Favorite idol added: Ricky
 
 Sun Aug 09 02:02:32 PDT 2026
 Collectible item added: Ricky PC
+
+## Phase 4: Task 3
+
+If I had more time to work on this project, I would refactor the KpopCollectionGUI class because it currently handles many different responsibilities. It creates the GUI components, handles user input, displays collection information, and also handles saving and loading.
+
+I could separate some of these responsibilities into smaller classes. For example, some of the GUI setup and event handling could be moved out of KpopCollectionGUI. This would make the class smaller and easier to understand and maintain.

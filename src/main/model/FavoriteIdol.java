@@ -56,7 +56,6 @@ public class FavoriteIdol implements Writable {
 
     @Override
     public JSONObject toJson() {
-        // TODO Auto-generated method stub
         JSONObject json = new JSONObject();
         json.put("name", name);
         json.put("group", group);

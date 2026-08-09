@@ -72,7 +72,6 @@ public class CollectibleItem implements Writable {
 
     @Override
     public JSONObject toJson() {
-        // TODO Auto-generated method stub
         JSONObject json = new JSONObject();
         json.put("itemName", itemName);
         json.put("itemType", itemType);

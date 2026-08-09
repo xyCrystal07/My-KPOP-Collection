@@ -102,7 +102,6 @@ public class CollectionManager implements Writable {
 
     @Override
     public JSONObject toJson() {
-        // TODO Auto-generated method stub
         JSONObject json = new JSONObject();
         json.put("idols", idolsToJson());
         json.put("collections", collectionsToJson());

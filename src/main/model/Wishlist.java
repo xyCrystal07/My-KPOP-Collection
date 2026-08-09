@@ -41,7 +41,6 @@ public class Wishlist implements Writable {
 
     @Override
     public JSONObject toJson() {
-        // TODO Auto-generated method stub
         JSONObject json = new JSONObject();
         json.put("items", itemsToJson());
         return json;
