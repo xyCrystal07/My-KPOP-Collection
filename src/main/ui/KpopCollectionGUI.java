@@ -5,6 +5,8 @@ import model.FavoriteIdol;
 import model.CollectibleItem;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import model.Event;
+import model.EventLog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +14,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class KpopCollectionGUI extends JFrame implements ActionListener {
     private static final String JSON_STORE = "./data/kpopCollection.json";
@@ -39,7 +43,7 @@ public class KpopCollectionGUI extends JFrame implements ActionListener {
     // EFFECTS: initializes the main GUI window and its components
     private void initializeFrame() {
         setSize(900, 550);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLayout(new BorderLayout());
         displayArea = new JTextArea();
         displayArea.setEditable(false);
@@ -63,6 +67,14 @@ public class KpopCollectionGUI extends JFrame implements ActionListener {
         scrollPane.setBorder(BorderFactory.createTitledBorder("Collection Information"));
         add(scrollPane, BorderLayout.CENTER);
         add(imageLabel, BorderLayout.EAST);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                printEventLog();
+                dispose();
+                System.exit(0);
+            }
+        });
         setVisible(true);
     }
 
@@ -212,6 +224,13 @@ public class KpopCollectionGUI extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "Collection loaded.",  "Success", JOptionPane.PLAIN_MESSAGE);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Unable to load file.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // EFFECTS: prints all logged events to the console
+    private void printEventLog() {
+        for (Event event : EventLog.getInstance()) {
+            System.out.println(event);
         }
     }
 }

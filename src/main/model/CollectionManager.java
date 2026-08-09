@@ -24,6 +24,7 @@ public class CollectionManager implements Writable {
     // EFFECTS: adds the given favorite idol to the collection manager
     public void addFavoriteIdol(FavoriteIdol idol) {
         idols.add(idol);
+        EventLog.getInstance().logEvent(new Event("Favorite idol added: " + idol.getName()));
     }
 
     // MODIFIES: this
@@ -33,6 +34,7 @@ public class CollectionManager implements Writable {
 
         if (idol != null) {
             idols.remove(idol);
+            EventLog.getInstance().logEvent(new Event("Favorite idol removed: " + idol.getName()));
             return true;
         }
 
@@ -59,6 +61,7 @@ public class CollectionManager implements Writable {
     // EFFECTS: adds the given collectible item to the collection manager
     public void addCollectibleItem(CollectibleItem item) {
         collections.add(item);
+        EventLog.getInstance().logEvent(new Event("Collectible item added: " + item.getItemName()));
     }
 
     // MODIFIES: this
@@ -69,6 +72,7 @@ public class CollectionManager implements Writable {
 
         if (item != null) {
             collections.remove(item);
+            EventLog.getInstance().logEvent(new Event("Collectible item removed: " + item.getItemName()));
             return true;
         }
 

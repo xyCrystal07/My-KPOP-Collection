@@ -34,3 +34,13 @@ This application is intended for K-pop fans and collectors who want a simple way
 - You can locate the visual component on the right side of the GUI.
 - You can save the state of the application by clicking "Save".
 - You can reload the state of the application by clicking "Load".
+
+## Phase 4: Task 2
+
+A representative sample of events logged when the application runs:
+
+Sun Aug 09 02:01:59 PDT 2026
+Favorite idol added: Ricky
+
+Sun Aug 09 02:02:32 PDT 2026
+Collectible item added: Ricky PC
